@@ -1,0 +1,155 @@
+<html>
+<head><title>Report a found child"</title>
+	<meta http-equiv="Content-Type" content="text/html" charset="ISO-8859-1">
+<style>
+table {
+    border-collapse: collapse;
+width: 50%;
+
+
+}
+body 
+{
+background-position:right;
+background-align:right;
+}
+th{
+color:blue;
+}
+td{
+color:green;
+}
+input{
+color:blue;
+}
+
+</style>
+
+</head>
+<body>
+<form action="imageupload2.jsp" method="post" enctype="multipart/form-data">
+<table bgcolor="add8e6"> 
+<script>
+function validate()
+{
+	//alert("started validation");
+	var flag=validatePhoneNumber();	if(flag==false) return false;
+	flag=validateAge(); if(flag==false) return false;
+	if(validateString("pname")==false) return false;
+	if(validateString("state")==false) return false;
+	if(validateString("city")==false) return false;
+	//if(validateString("email")==false) return false;
+	if(validateString("cname")==false) return false;
+	//if(validateString("photo")==false) return false;
+	if(validateString("gen")==false) return false;	
+	//alert("end of validations");
+	submitbutton.enabled=true;
+	return true;
+}
+
+function validatePhoneNumber()
+{
+	//alert("phone validations");
+	var s=mobileno.value;
+
+	if(s.length==0){alert("'mobile number' missing"); return false;}
+	for(var i=0;i<s.length;i++)
+	{
+		var code=s.charCodeAt(i);
+		if(code>=48 && code<=57 || code==43 || code==45)
+		{
+		}
+		else
+		{
+			alert("only digits, '+' and '-' are accepted in phone number");
+			return false;
+		}
+	}
+	
+	if(s.length<10)
+	{
+		alert("too few digits in phone number");
+		return false;
+	}
+	if(s.length>15)
+	{
+		alert("too many digits in phone number");
+		return false;
+	}
+	//alert("phone validations complete");
+	return true;
+}
+function validateAge()
+{
+	//alert("age validations");
+	var s=age.value;
+	if(s.length==0)
+	{
+		alert("'age' missing"); return false;
+	}
+	for(var i=0;i<s.length;i++)
+	{
+		var code=s.charCodeAt(i);
+		if(code<48 || code>57)
+		{
+			alert("age should contain digits only");
+			return false;
+		}
+	}
+	
+	if(s.length>3)
+	{
+		alert("too many digits in phone number");
+		return false;
+	}
+	//alert("age validations complete");
+	return true;	
+}
+function validateString(arg)
+{
+	//alert(arg+" validations");
+	var ele=document.getElementById(arg);
+	s=ele.value;	
+	if(s.length==0)
+	{
+		alert("'"+arg+"'"+" missing, please check.");
+		return false;
+	}
+	for(var i=0;i<s.length;i++)
+	{
+		var code=s.charCodeAt(i);
+		if(code>=65 && code<=90 || code>=97 && code<=122 || code==32);
+		else
+		{
+			alert(arg+" should contain alphabets only");
+			return false;
+		}
+
+	//alert(arg+" complete");
+	return true;
+}
+
+</script>
+<tr><th> custodian details</th></tr>
+<tr><td>name</td><td><input name="pname" id="pname"></td></tr><br>
+<tr><td>phone number</td><td><input id="mobileno" type="number" name="mobileno"></td></tr><br>
+<tr><td>state</td><td><input id="state" name="state"></td></tr><br>
+<tr><td>city</td><td><input id="city" name="city"></td></tr><br>
+<tr><td>email</td><td><input id="email" name="email"></td></tr><br>
+
+<tr><th> child details</th></tr>
+<tr><td>childname</td><td><input id="cname" name="cname"></td></tr><br>
+<tr><td>image</td><td><input type="file" id="photo" name="photo"></td></tr>
+<tr><td>age....</td><td><input id="age" type="number" name="age"></td</tr><br>
+<tr><td>gender</td><td><input id="gen" name="gen"></td></tr><br>
+<tr><input type="hidden" id="cat" name="category"></tr>
+<!-- <input type="button" onclick="validate()" value="VALIDATE"> -->
+<tr><td><input id="submitbutton" type="submit" onclick="return validate();"></td></tr>
+<script>
+	document.getElementById("cat").value=a;
+	submitbutton.enabled=false;
+</script>
+</table>
+</form>
+</body>
+</html>

@@ -1,0 +1,89 @@
+
+<html>
+<head>
+<style>
+
+//body{background-repeat:no-repeat;width:1%;background-size:1366px 766px;}
+
+</style>
+<html>
+<head>
+<title>PROGENY MILAPP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="menu.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<div id="container">
+  <div id="top">
+  
+    <h1 align="center">CHILD MISSING WEBSITE</h1>
+  </div>
+  <div id="menuh-container">
+    <div id="menuh">
+      <ul>
+        <li><a href="index.html" class="top_parent">&nbsp; Homepage</a>
+         
+        </li>
+      </ul>
+      <ul>
+        <li><a href="form.html" class="top_parent">&nbsp; Enter child details</a>
+         
+        </li>
+      </ul>
+      <ul>
+        <li><a href="datareading.html" class="top_parent">&nbsp; get child details</a>
+        
+        </li>
+      </ul>
+      <ul>
+        <li><a href="first.html" class="top_parent">&nbsp; About</a> </li>
+      </ul>
+	  </ul>
+      <ul>
+        <li><a href="admin.html" class="top_parent">&nbsp; Admin</a> </li>
+      </ul>
+     
+     
+    
+    </div>
+  </div>
+  <div class="clear:both;"></div>
+  <div id="leftnav">
+    <h2></h2>
+    <div id="nav">
+      <ul id="navlist">
+      
+      
+      </ul>
+    </div>
+    
+   
+  </div>
+  <div id="content">
+
+<blockquote>
+<body background="child4.jpg">
+
+<script>
+	function disableInput(){
+		document.getElementById("childname").disabled=true;
+		document.getElementById("childname").style.background="#999";
+	}
+</script>
+
+<form action="datareading.jsp" method="post">
+<h5>
+Enter ChildName <input type="text" name="childname" id="childname"> 
+<pre>  OR </pre>
+<input type="checkbox" name="unknown" value="unknown" onClick="disableInput()">
+<label>Unkown children</label>
+
+
+<input type="submit" value="Get Data">
+</h5>
+</body>
+</form>
+</blockquote>
+</html>

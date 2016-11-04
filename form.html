@@ -1,0 +1,306 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>Form validation</title>
+
+<!-- Meta Tags -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!-- CSS -->
+<link rel="stylesheet" href="style/structure.css" type="text/css" />
+<link rel="stylesheet" href="style/form.css" type="text/css" />
+
+<!-- JavaScript -->
+<html>
+<head>
+<title>PROGENY MILAPP</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="menu.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<div id="container">
+  <div id="top">
+  
+    <h1 align="center">CHILD MISSING WEBSITE</h1>
+  </div>
+  <div id="menuh-container">
+    <div id="menuh">
+      <ul>
+        <li><a href="index.html" class="top_parent">&nbsp; Homepage</a>
+         
+        </li>
+      </ul>
+      <ul>
+        <li><a href="form.html" class="top_parent">&nbsp; Enter child details</a>
+         
+        </li>
+      </ul>
+      <ul>
+        <li><a href="datareading.html" class="top_parent">&nbsp; get child details</a>
+        
+        </li>
+      </ul>
+      <ul>
+        <li><a href="first.html" class="top_parent">&nbsp; About</a> </li>
+      </ul>
+	  </ul>
+      <ul>
+        <li><a href="admin.html" class="top_parent">&nbsp; Admin</a> </li>
+      </ul>
+     
+     
+    
+    </div>
+  </div>
+  <div class="clear:both;"></div>
+  <div id="leftnav">
+    <h2></h2>
+    <div id="nav">
+      <ul id="navlist">
+      
+      
+      </ul>
+    </div>
+    <p>  </p>
+   
+  </div>
+  <div id="content">
+
+<script type="text/javascript" src="scripts/validate.js"></script>
+ <script type="text/javascript">
+var ck_name = /^[A-Za-z ]{3,20}$/;
+var ck_mobileno = /^[0-9_]{10}$/;
+var ck_email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i 
+var ck_username = /^[A-Za-z0-9_]{1,20}$/;
+
+
+function ValidateFileUpload() {
+    var fuData = document.getElementById('fileChooser');
+    var FileUploadPath = fuData.value;
+
+
+    if (FileUploadPath == '') {
+        alert("Please upload an image");
+
+    } else {
+        var Extension = FileUploadPath.substring(
+                FileUploadPath.lastIndexOf('.') + 1).toLowerCase();
+
+
+
+ if (Extension == "gif" || Extension == "png" || Extension == "bmp"
+                || Extension == "jpeg" || Extension == "jpg") {
+
+
+            if (fuData.files && fuData.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    $('#blah').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(fuData.files[0]);
+            }
+
+        } 
+
+
+  else {
+            alert("Photo only allows file types of GIF, PNG, JPG, JPEG and BMP. ");
+
+        }
+    }
+}
+
+
+
+function validate(form){
+ var pname = form.pname.value;
+ var mobileno = form.mobileno.value;
+ var email = form.email.value;
+ var state = form.state.value;
+ var city = form.city.value;
+ var cname = form.cname.value;
+ var age = form.age.value;
+ 
+  
+
+
+ 
+ var gen = form.gen.value;
+  
+  
+ var errors = [];
+ 
+if (pname == "" || mobileno == "" || email == "" || state == "" || city == "" || cname == "" || age == ""  || gen == "") {
+	
+  errors[errors.length] = "please fill all the fields";
+}
+ else if (!ck_name.test(pname)) {
+  errors[errors.length] = "Name should contain alpha charecters only.";
+ }
+ 
+  else if (!ck_mobileno.test(mobileno)) {
+  errors[errors.length] = "please enter a valid phone number.";
+ }
+  
+ else if (!ck_email.test(email)) {
+  errors[errors.length] = "you must enter a valid email address.";
+ }
+ else if (!ck_name.test(state)) {
+  errors[errors.length] = "StateName should contain alpha charecters only.";
+ }
+  
+  else if (!ck_name.test(city)) {
+  errors[errors.length] = "CityName should contain alpha charecters only.";
+ }
+else if (!ck_name.test(cname)) {
+  errors[errors.length] = "Childname should contain alpha charecters only.";
+ }
+else if ((isNaN(age) || age < 1 || age > 200)) {
+  errors[errors.length] = "age should less that 200.";
+ }
+
+ else if (gen==0) {
+  errors[errors.length] = "Select Gender";
+ }
+ 
+ 
+ if (errors.length > 0) {
+  reportErrors(errors);
+  return false;
+ }
+ 
+ return true;
+}
+function disableInput(){
+	document.getElementById("cname").disabled=true;
+	document.getElementById("cname").style.background="#999";
+	document.getElementById("cname").value="null";
+}
+
+
+
+function reportErrors(errors){
+ var msg = "Please Enter Valide Data...\n";
+ for (var i = 0; i<errors.length; i++) {
+  var numError = i + 1;
+  msg += "\n" + numError + ". " + errors[i];
+ }
+
+ alert(msg);
+}
+</script>
+
+</head>
+
+<body id="public">
+	<div style="height:30px"></div>
+
+<div id="container">
+
+<!--<div style="height:30px"></div>-->
+<blockquote>
+<form autocomplete="off" enctype="multipart/form-data" method="post" action="imageupload2.jsp" onSubmit="return validate(this);" name="form">
+
+
+<ul>
+<h2>Custodian Details</h2>
+		
+	
+<li id="foli1" class="   ">
+	<label class="desc" id="title1" for="Field1">Full Name</label>
+	<div>
+		<input id="pname" name="pname" type="text" class="field text medium" value="" maxlength="600" tabindex="1"/>
+	</div>
+</li>
+
+
+<li id="foli2" class="   ">
+	<label class="desc" id="title1" for="Field1">Phone Number</label>
+	<div>
+		<input id="mobileno" name="mobileno" type="text" class="field text medium" value="" maxlength="255" tabindex="1"/>
+	</div>
+</li>
+
+<li id="foli3" class="   ">
+	<label class="desc" id="title2" for="Field2">Email</label>
+	<div>
+		<input id="email" name="email" type="text" class="field text medium" value="" maxlength="255" tabindex="2"/>
+	</div>
+</li>
+
+
+<li id="foli4" class="   ">
+	<label class="desc" id="title3" for="Field3">State</label>
+	<div>
+		<input id="state" name="state" type="text" class="field text medium" value="" maxlength="255" tabindex="3"/>
+	</div>
+</li>
+
+<li id="foli5" class="   ">
+	<label class="desc" id="title4" for="Field4">City</label>
+	<div>
+		<input id="city" name="city" type="text" class="field text medium" value="" maxlength="255" tabindex="3"/>
+	</div>
+</li>
+
+
+
+<h2>Children Details</h2>
+
+<li id="foli6" class="   ">
+	<label class="desc" id="title1" for="Field1">Child name</label>
+	<div>
+		<input id="cname" name="cname" type="text" class="field text medium" value="" maxlength="255" tabindex="1"/><pre>  Or  </pre>
+	<input type="checkbox" name="unknown" id="check" value="unknown" onclick="disableInput()"><label>Unknown</label>
+	</div>
+</li>
+
+
+<li id="foli7" class="   ">
+	<label class="desc" id="title1" for="Field1">Age</label>
+	<div>
+		<input id="age" name="age" type="text" class="field text medium" value="" maxlength="255" tabindex="1"/>
+	</div>
+</li>
+
+
+<li id="foli8" class="   ">
+	<label class="desc" id="title1" for="Field1">Image</label>
+	<div>
+		<input  name="photo" type="file" id="fileChooser" accept="image/*" class="field text medium" onchange="return ValidateFileUpload()"  maxlength="255" tabindex="1"/>
+	</div>
+</li>
+
+
+<li id="foli9" class="   ">
+	<label class="desc" id="title6" for="Field6">Gender</label>
+	<div>
+		<select id="gen" name="gen" class="field select medium" tabindex="5"> 
+		<option value="0">Gender</option>
+        <option value="1">Male</option>
+        <option value="2">Female</option>
+		</select>
+	</div>
+</li>
+
+
+<li id="foli110" class="   "></li>
+
+<li class="buttons">
+				<input  type="submit" value="Submit" style=" background:#0060a1; color:#FFFFFF; font-size:14px; border:1px solid #0060a1"/>
+</li>
+
+	
+</ul>
+</form>
+<div style="height:20px"></div>
+</div><!--container-->
+</blockquote></body>
+</html>
